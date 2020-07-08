@@ -1,4 +1,4 @@
-## Desktop application for a robotic gripper ( Based on Electron.js )
+## Desktop application for a grid eye sensor ( Based on Electron.js )
 
 
 

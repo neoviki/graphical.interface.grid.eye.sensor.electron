@@ -65,9 +65,6 @@ function serial_open()
 	document.getElementById("id_btn_connect").innerHTML = "Disconnect";
 	serial_status = CONNECTED;
 	html_button_enable("id_btn_connect");
-	html_textarea_clear('id_serial_reader');
-	html_textarea_append('id_serial_reader', "[ serial port connected ]\n");
-	html_textarea_append('id_serial_reader', " ----------------------- \n");
 }
 
 function serial_close()
@@ -134,12 +131,68 @@ function html_textarea_scroll(id){
     document.getElementById(id).scrollTop = document.getElementById(id).scrollHeight
 }
 
+function update_right_grid(pixel_reading_array)
+{
+    var i, tmp;
+    var index = "";
+    var pixel_id = "";
+    
+    
+    dis="pixel[0] = "+pixel_reading_array[0];
+	console.log(dis);
+    /*
+    dis="pixel[1] = "+pixel_reading_array[1];
+	console.log(dis);
+    dis="pixel[2] = "+pixel_reading_array[2];
+	console.log(dis);
+    tmp=pixel_reading_array.length;
+    dis="pixel_reading_array.length = "+tmp.toString();
+	console.log(dis);
+    */
 
+    for(i=1; i<pixel_reading_array.length; i++){
+
+        if(i>64){
+            break;
+        }
+
+        tmp = i;
+        index = tmp.toString();
+        pixel_id = "pxR_"+index;
+        var element = document.getElementById(pixel_id);
+        element.innerText = pixel_reading_array[i]; 
+    }
+
+}
 
 function html_serial_data_display(data)
 {
 	/*write to text area*/
-    html_textarea_append('id_serial_reader', data);
+    var incoming_str = data.toString();
+    var ret = incoming_str.includes("GRID_EYE");
+
+    if(ret == false){
+        return;
+    }
+	
+    console.log("Grid Eye Data Arrived\n");
+
+    /* Incoming Data Ordering */
+    /*
+        1   2   3   4   5   6   7   8
+        9   10  11  12  13  14  15  16
+        
+        .   .   .   .   .   .   .   . 
+        
+        .   .   .   .   .   .   .   .
+        
+        57  58  59  60  61  62  63  64   
+     
+     */
+    var grid_eye_values = incoming_str.split("#");
+
+    update_right_grid(grid_eye_values);
+    //html_textarea_append('id_serial_reader', data);
 }
 
 function html_insert_between_tags(id, data)
@@ -372,7 +425,6 @@ function generate_grid_1()
         c_ctr = (c_ctr + 1 ) % 4;
     }
 }
-
 
 function generate_grid_2()
 {

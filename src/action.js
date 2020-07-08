@@ -131,6 +131,65 @@ function html_textarea_scroll(id){
     document.getElementById(id).scrollTop = document.getElementById(id).scrollHeight
 }
 
+function update_left_grid(pixel_reading_array)
+{
+    var i, tmp;
+    var index = "";
+    var pixel_id = "";
+    
+    
+    dis="pixel[0] = "+pixel_reading_array[0];
+	console.log(dis);
+    /*
+    dis="pixel[1] = "+pixel_reading_array[1];
+	console.log(dis);
+    dis="pixel[2] = "+pixel_reading_array[2];
+	console.log(dis);
+    tmp=pixel_reading_array.length;
+    dis="pixel_reading_array.length = "+tmp.toString();
+	console.log(dis);
+    */
+
+    var red=0;
+    var green=128;
+    var blue=0;
+    var color;
+
+    for(i=1; i<pixel_reading_array.length; i++){
+
+        if(i>64){
+            break;
+        }
+        tmp = i;
+        index = tmp.toString();
+        pixel_id = "pxL_"+index;
+        var element = document.getElementById(pixel_id);
+        var temperature = Number(pixel_reading_array[i]);
+       
+        if( temperature > 128 ){ //HOT - RED
+            red = Math.floor(temperature) + 40;
+            if(red > 255){
+                red = 255;
+            }
+            blue = 0;
+        }else{ //COLD - BLUE
+            red = 0;
+            blue = temperature + 100;
+
+            if(blue > 255){
+                blue = 255;
+            }
+
+        }
+        
+        color=rgb2hex(red,green,blue);
+        element.style.backgroundColor=color;
+        element.innerText = pixel_reading_array[i]; 
+    }
+
+}
+
+
 function update_right_grid(pixel_reading_array)
 {
     var i, tmp;
@@ -191,6 +250,7 @@ function html_serial_data_display(data)
      */
     var grid_eye_values = incoming_str.split("#");
 
+    update_left_grid(grid_eye_values);
     update_right_grid(grid_eye_values);
     //html_textarea_append('id_serial_reader', data);
 }
@@ -385,10 +445,26 @@ async function sleep_test(){
 	alert("Woke up after 10 seconds of nice rest!!");
 }
 
+function rgb2hex(r,g,b) {
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+
+    if (r.length == 1) r = "0" + r;
+    if (g.length == 1) g = "0" + g;
+    if (b.length == 1) b = "0" + b;
+
+    var ret = "#" + r + g + b;
+    return ret
+}
+
 function generate_grid_1()
 {
     var i, div, index;
-    var color="#4FF";
+    var red=255;
+    var green=128;
+    var blue=0;
+    var color=rgb2hex(red,green,blue);
     var pixel_id = "";
     var element = document.getElementById("px_main_1");
     var c_ctr=0;
@@ -411,13 +487,18 @@ function generate_grid_1()
 
 
         if( c_ctr == 1 ){
-            color="#C00"
-        }else if( c_ctr == 2 ){
-            color="#8F0"
-        }else if( c_ctr == 3 ){
-            color="#40F"
+            red = red - 40;
+
+            if(red < 0) {
+                red = 255;
+            }
+            
+            color=rgb2hex(red,green,blue);
+            //color="#C00"
         }else{
-            color="#FFF"
+            blue = (blue + 40) % 255;
+            color=rgb2hex(red,green,blue);
+            //color="#8F0"
         }
 
         div.style.backgroundColor=color;

@@ -2,7 +2,7 @@
 
 
 
-![alt text](images/demo.jpeg)
+![alt text](images/grid_eye_sensor_demo.gif)
 
 
 

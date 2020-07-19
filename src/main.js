@@ -32,7 +32,7 @@ function register_app_close_action(){
 
 function create_window(){
 	/* Create Browser Window of size 800x600 */
-	win = new BrowserWindow({ width: 800, height: 600 })
+	win = new BrowserWindow({ width: 800, height: 620 })
 }
 
 function load_page(){

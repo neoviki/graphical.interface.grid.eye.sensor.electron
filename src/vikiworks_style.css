@@ -1,0 +1,132 @@
+:root{
+    --color-blue1: #000046;
+    /*Colors for Google Chrome*/
+    --gc-color-blue1: -webkit-linear-gradient(to right, #1CB5E0, #000046); 
+    
+    /*Colors for IE Chrome*/
+    --ie-color-blue1:  linear-gradient(to right, #1CB5E0, #000046); 
+
+    --bg-color-old-browsers: var(--color-blue1);
+    --bg-color-google-chrome: var(--gc-color-blue1);
+    --bg-color-ie-browser: var(--ie-color-blue1);
+  
+    --c-olive-green: #afc549;
+  --c-light-grey: #a2a3a7;
+  --c-light-yellow: #e9bc00;
+  --c-white: #fff;
+  --c-black: #000;
+
+  --page_bg_color: none;
+  /*##################  GRID DIMENSION #################*/
+
+  /* Square Grid    */
+  --grid-cell-width: 370px; /* 300*/
+  --grid-cell-height: 300px; /*250*/
+
+  /*##################  GRID ALIGNMENT #################*/
+  /* Header Grid    */
+  --header-padding-top: 5px;
+  --header-padding-bottom: 20px;
+  --header-padding-left:10px;
+  --header-padding-right:10px;
+  --header-col-gap: 10px;
+  --header-row-gap: 10px;
+
+  /* Square Grid   */
+  --grid-cell-row-gap: 10px;
+  --grid-cell-col-gap: 10px;
+  --grid-cell-padding: 10px;
+
+  /*##################  GRID COLORS    #################*/
+  /* Header Grid    */
+  --header-bg-color: var(--page_bg_color);
+
+  /* Square Grid */
+  --grid-cell-bg-color: var(--page_bg_color);
+
+  /*##################  GRID ITEM COLORS #################*/
+
+  /* Header Grid Items   */
+  --header-item-fg-color: #0f0c29;
+  --header-item-bg-color: none;
+  --header-item-border-color: var(--c-white);
+
+  /* Square Grid Item  */
+  --grid-cell-item-bg-color: var(--c-light-grey);
+  --grid-cell-item-fg-color: var(--c-white);
+  --grid-cell-item-border-color: var(--c-white);
+
+  /*##################  GRID ITEM BORDERS #################*/
+  /* Header Grid Items */
+  --header-item-border-thickness: 0px;
+
+  /* Square Grid Items */
+  --grid-cell-item-border-thickness: 0px;
+}
+
+
+body{
+    background: var(--bg-color-old-browsers);  
+    background: var(--bg-color-google-chrome);
+    background: var(--bg-color-ie-browser); 
+}
+
+/* for screen width > 1200*/
+.header-grid {
+  display: grid;
+  position: relative;
+  grid-column-gap: var(--header-col-gap);
+  grid-row-gap: var(--header-row-gap);
+  /*2 columns [ each 1fr correspond to one column ]*/
+  grid-template-columns: 1fr;
+  background-color: var(--header-bg-color);
+  padding-top: var(--header-padding-top);
+  padding-bottom: var(--header-padding-bottom);
+  padding-left: var(--header-padding-left);
+  padding-right: var(--header-padding-right);
+}
+
+.header-grid-item {
+  display: flex;
+  color: var(--header-item-fg-color); 
+  background-color: var(--header-item-bg-color);
+  border: var(--header-item-border-thickness) solid
+    var(--header-item-border-color);
+  height: 40px; /* grid row height*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 20px;
+  font-weight: 500;
+  font-size: 25px;
+  text-align: left;
+  justify-content: left;
+  align-items: left;
+}
+
+.c8_grid {
+    max-width: 800px;
+    max-height: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-auto-rows: 40px;
+    grid-auto-columns: 40px;
+    /*8 columns [ each auto correspond to one column ]*/
+    /* grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px; */
+    grid-template-columns: 36px 36px 36px 36px 36px 36px 36px 36px; 
+    /* background-color: #2297F3; */
+    padding: 10px;
+}
+
+.c8_grid_item {
+    /* background-color: rgba(253, 215, 204, 0.8); */
+    border: 1px solid rgba(1, 1, 1, 0.1);
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+

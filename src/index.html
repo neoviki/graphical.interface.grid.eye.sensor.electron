@@ -6,52 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> Serial Monitor </title>
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-  <style>
-    body{
-    background-color: #ffffff; /* For browsers that do not support gradients */
-    background-image: linear-gradient( 20deg, #ffffff, #ffefba);
-    }
-
-    .c8_grid {
-  max-width: 800px;
-  max-height: 800px;
-  margin: 0 auto;
-  display: grid;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  grid-auto-rows: 40px;
-  grid-auto-columns: 40px;
-  /*8 columns [ each auto correspond to one column ]*/
-  /* grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px; */
-  grid-template-columns: 36px 36px 36px 36px 36px 36px 36px 36px; 
-  /* background-color: #2297F3; */
-  padding: 10px;
-}
-
-.c8_grid_item {
-  /* background-color: rgba(253, 215, 204, 0.8); */
-  border: 1px solid rgba(1, 1, 1, 0.1);
-  padding: 10px;
-  font-size: 12px;
-  text-align: center;
-}
-
-
-  </style>
-
+  <link rel="stylesheet" href="./vikiworks_style.css">
 </head>
 
 <body>
   <div class="container">
     <br>
 
-    <span class="d-block p-2 bg-warning text-black text-left">
-      <div style="padding-left: 20px;">
-      Select Serial Port
-      </div>
-    </span>
-
+        <div class="header-grid">
+        <div class="header-grid-item"> SELECT SERIAL PORT </div>
+        </div>
+    
     <div class="form-group">
       <div class="row" style="padding-top:10px;padding-bottom:5px;">
         <div class="col">
@@ -76,12 +41,10 @@
 
 
 
-    <div style="padding-top:5px;padding-bottom:5px;">
-      <span class="d-block p-2 bg-warning text-black text-left">
-        <div style="padding-left: 20px;">
-        Grid Eye Output
-      </div>
-      </span>
+    <div style="padding-top:20px;padding-bottom:5px;">
+        <div class="header-grid">
+        <div class="header-grid-item"> GRID EYE OUTPUT </div>
+        </div>
     </div>
 
     <div class="row">
